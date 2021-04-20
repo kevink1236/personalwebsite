@@ -6,7 +6,7 @@ echo '</pre>';
      $message_sent = true;
      if(isset($_POST['Email']) && $_POST['Email'] != ' '){
           
-          if(filter_var($_POST['Email'], FILTER_VALIDATE_EMAIL) ) {
+          if(filter_var($_POST['Name'], FILTER_VALIDATE_EMAIL) ) {
                 
                //submit the form
                $Name = $_POST['Name'];
@@ -24,6 +24,9 @@ echo '</pre>';
 
                $message_sent = true;
           }//end if
+          else {
+               $invalid_class_name = "form-invalid";
+          }
      }//end if
      
 ?>
@@ -233,10 +236,9 @@ echo '</pre>';
         <?php
         else:
         ?>
-        
           <div class="contact__container bd-grid">
           <form action="contactform.php" method="POST"class="contact__form">
-            <input type="text" name ="Name" placeholder="Name" class="contact__input" required>
+            <input <?=$invalid_class_nametype ?? ""?> type="text" name ="Name" placeholder="Name" class="contact__input" required>
             <input type="mail" name="Email" placeholder="Email" class="contact__input" required>
             <input type="Sub" name="Subject" placeholder="Subject" class="contact__input">
             <textarea name="Message" placeholder="Text goes here!" cols="0" rows="11" class="contact__input"></textarea>
