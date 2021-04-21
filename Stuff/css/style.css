@@ -364,9 +364,9 @@ img{
   width: 80%;
   font-family: var(--body-font);
 }
-#contact__status {
+#status {
   display: flex;
-  max-width: 30%;
+  max-width: 40%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -374,11 +374,11 @@ img{
   margin: auto;
   border-radius: .5rem;
 }
-#contact__status.success{
-  color: rgb(68, 143, 65);
+#status.success{
+  color: rgb(99, 212, 96);
   animation: contact__status 3s ease forwards;
 }
-#contact__status.error {
+#status.error {
   color: rgb(216, 83, 83);
   animation: contact__status 3s ease forwards;
 }
