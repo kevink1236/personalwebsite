@@ -37,7 +37,7 @@ reset: true
 
 /*SCROLL HOME*/
 sr.reveal('.home__title', {});
-sr.reveal('.button', { delay: 100 });
+sr.reveal('.button', { delay: 50 });
 sr.reveal('.home__img', { delay: 200 });
 sr.reveal('.home__social-icon', { interval: 200 });
 
@@ -56,52 +56,94 @@ sr.reveal('.skills__img', { delay: 600 });
 sr.reveal('.work__img', { interval: 200 });
 
 /*SCROLL CONTACT*/
-sr.reveal('.contact__input', { interval: 200 });
+sr.reveal('.contact__input', { interval: 100 });
+
 
 window.addEventListener("DOMContentLoaded", function () {
-     // get the form elements defined in your form HTML above
-   
-     var form = document.getElementById("my-form");
-     // var button = document.getElementById("my-form-button");
-     var status = document.getElementById("status");
-   
-     // Success and Error functions for after the form is submitted
-   
-     function success() {
-       form.reset();
-       status.classList.add("success");
-       status.innerHTML = "Sent Successfully!";
-       location.reload();
-     }
-   
-     function error() {
-       status.classList.add("error");
-       status.innerHTML = "Oops! There was a problem.";
-         location.reload();
-     }
-   
-     // handle the form submission event
-   
-     form.addEventListener("submit", function (ev) {
-       ev.preventDefault();
-       var data = new FormData(form);
-       ajax(form.method, form.action, data, success, error);
-     });
-   });
-   
-   // helper function for sending an AJAX request
-   
-   function ajax(method, url, data, success, error) {
-     var xhr = new XMLHttpRequest();
-     xhr.open(method, url);
-     xhr.setRequestHeader("Accept", "application/json");
-     xhr.onreadystatechange = function () {
-       if (xhr.readyState !== XMLHttpRequest.DONE) return;
-       if (xhr.status === 200) {
-         success(xhr.response, xhr.responseType);
-       } else {
-         error(xhr.status, xhr.response, xhr.responseType);
-       }
-     };
-     xhr.send(data);
-   }
+
+const form = document.querySelector('form');
+const thankYou = document.querySelector('.thank-you');
+const nameInput = document.querySelector('input[name="name"]');
+const emailInput = document.querySelector('input[name="email"]');
+const messageInput = document.querySelector("textarea[name='message']");
+
+nameInput.isValid = () => !!nameInput.value;
+emailInput.isValid = () => isValidEmail(emailInput.value);
+messageInput.isValid = () => !!messageInput.value;
+
+
+const inputs = [nameInput, emailInput, messageInput];
+
+
+const isValidEmail = (email) => {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+};
+
+let isFormValid = false;
+let isValidationOn = false;
+
+const resetElm = (elm) => {
+  elm.classList.remove("invalid");
+  elm.nextElementSibling.classList.add("hidden");
+};
+
+const invalidateElm = (elm) => {
+  elm.classList.add("invalid");
+  elm.nextElementSibling.classList.remove("hidden");
+};
+
+
+const validateInputs = () => {
+  if(!isValidationOn) return;
+  isFormValid = true;
+  resetElm(nameInput);
+  resetElm(emailInput);
+  resetElm(messageInput);
+
+  if(!nameInput.value) {
+    isFormValid = false;
+    invalidateElm(nameInput);
+  }
+
+  if(!isValidEmail(emailInput.value)) {
+    isFormValid = false;
+    invalidateElm(emailInput);
+  }
+  if(!messageInput.value) {
+    isFormValid = false;
+    invalidateElm(messageInput);
+  }
+};
+async function handleSubmit(event) {
+  event.preventDefault();
+  var status = document.getElementById("my-form-status");
+  var data = new FormData(event.target);
+  fetch(event.target.action, {
+    method: form.method,
+    body: data,
+    headers: {
+        'Accept': 'application/json'
+    }
+  });
+}
+form.addEventListener("submit", handleSubmit)
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  isValidationOn = true;
+  validateInputs();
+  if(isFormValid) {
+    form.reset();
+    thankYou.classList.remove('hidden');
+    setTimeout(function(){
+      location.reload();
+    }, 3000);
+  }
+});
+inputs.forEach(input => {
+  input.addEventListener("input", () => {
+      validateInputs();
+  });
+});
+});
