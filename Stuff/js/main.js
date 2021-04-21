@@ -71,11 +71,13 @@ window.addEventListener("DOMContentLoaded", function () {
        form.reset();
        status.classList.add("success");
        status.innerHTML = "Sent Successfully!";
+       location.reload();
      }
    
      function error() {
        status.classList.add("error");
        status.innerHTML = "Oops! There was a problem.";
+         location.reload();
      }
    
      // handle the form submission event
