@@ -191,24 +191,30 @@
     </section>
 
     <!--==== CONTACT ====-->
-   
-      <section class="contact section" id="contact">
-        <h1 class="section-title">Contact</h1>
 
-        
+    <section class="contact section" id="contact">
+      <h1 class="section-title">Contact</h1>
 
-          <div class="contact__container bd-grid">
-          <form action="contactform.php" method="POST"class="contact__form">
-            <input type="text" name ="Name" placeholder="Name" class="contact__input" required>
-            <input type="mail" name="Email" placeholder="Email" class="contact__input" required>
-            <input type="Sub" name="Subject" placeholder="Subject" class="contact__input">
-            <textarea name="Message" placeholder="Text goes here!" cols="0" rows="11" class="contact__input"></textarea>
+      <div class="contact__container bd-grid">
+        <form action="Stuff/PHP/main.php" method="POST" class="contact__form">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Full name" id = "name"class="contact__input" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="email" placeholder="Your e-mail" id = "email" class="contact__input" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="subject" placeholder="Subject" id = "subject" class="contact__input" required>
+          </div>
+          <div class="class form-group">
+            <textarea name="message" placeholder="Text goes here!" cols="0" rows="11" class="contact__input"></textarea>
+          </div>
+          <button type="submit" class="contact__button button" name="button">Send</button>
+        </form>
+      </div>
+      <div id="contact__status" class="success"></div>
+    </section>
 
-            <button type="submit" class="contact__button button">Send</button>
-          </form>
-        </div>
-      </section>
-      
   </main>
 
   <!--===== FOOTER =====-->
