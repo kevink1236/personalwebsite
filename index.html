@@ -48,7 +48,7 @@
       </div>
 
       <div class="home__img">
-        <img src="Stuff/Image/hacker.jpg" class="home__img">
+        <img src="Stuff/Image/hacker.jpg" alt ="" class="home__img">
       </div>
     </section>
 
@@ -168,7 +168,7 @@
           </div>
         </div>
         <div>
-          <img src="Stuff/Image/coding wallpaper.jpg" alt="" class="skills__img">
+          <img src="Stuff/Image/codingWallpaper.jpg" alt="" class="skills__img">
         </div>
       </div>
     </section>
@@ -179,7 +179,7 @@
 
       <div class="work__container bd-grid">
         <div class="work__img">
-          <img src="Stuff/Image/cloude binary - Copy.png" alt="">
+          <img src="Stuff/Image/binaryCloud.png" alt="">
         </div>
         <div class="work__img">
           <img src="Stuff/Image/rocket1.png" alt="">
@@ -196,23 +196,23 @@
       <h1 class="section-title">Contact</h1>
 
       <div class="contact__container bd-grid">
-        <form action="Stuff/PHP/main.php" method="POST" class="contact__form">
+        <form action="https://formspree.io/f/xdoykwbe" method="POST" class="contact__form" id="my-form">
           <div class="form-group">
-            <input type="text" name="name" placeholder="Full name" id = "name"class="contact__input" required>
+            <input type="text" name="name" placeholder="Full name" id="name" class="contact__input" required>
           </div>
           <div class="form-group">
-            <input type="text" name="email" placeholder="Your e-mail" id = "email" class="contact__input" required>
+            <input type="text" name="email" placeholder="Your e-mail" id="email" class="contact__input" required>
           </div>
           <div class="form-group">
-            <input type="text" name="subject" placeholder="Subject" id = "subject" class="contact__input" required>
+            <input type="text" name="subject" placeholder="Subject" id="subject" class="contact__input" required>
           </div>
           <div class="class form-group">
-            <textarea name="message" placeholder="Text goes here!" cols="0" rows="11" class="contact__input"></textarea>
+            <textarea name="message" placeholder="Text goes here!" cols="1" rows="11" class="contact__input"></textarea>
           </div>
           <button type="submit" class="contact__button button" name="button">Send</button>
         </form>
       </div>
-      <div id="contact__status" class="success"></div>
+      <div id="status"></div>
     </section>
 
   </main>
@@ -238,8 +238,6 @@
   <script src="https://unpkg.com/scrollreveal"></script>
 
   <!--===== MAIN JS=====-->
-  <script src="Stuff/js/main.js">
-  </script>
+  <script src="Stuff/js/main.js"></script>
 </body>
-
 </html>
